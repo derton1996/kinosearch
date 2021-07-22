@@ -28,6 +28,7 @@
         var inp = document.getElementById("content");
         var art = document.getElementById("article");
         var newInp = inp.cloneNode(true);
+        inp.value = null;
 
         newInp.id = newInp.id + id;
         newInp.name = 'constructorDTOList[' + `${id}` + '].info';
@@ -43,7 +44,7 @@
         length = document.getElementsByClassName('hd').length;
 
         var ar = [];
-        for (let i = 0; i < length; i++) {
+        for (let i = 1; i < length; i++) {
             let doc = document.getElementsByClassName('hd')[i];
             let obj = new Object();
             obj.info = doc.value;
