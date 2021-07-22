@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form id="form">
+    <div id="article">
+        <input id="content" class="hd" type="text"/>
+        <button type="button" onclick="createDiv()">+</button>
+        <br>
+    </div>
+    <br>
+    <div>
+        <button type="submit">Добавить</button>
+    </div>
+</form>
+<script>
+    const elForm = document.getElementById('form');
+
+    let id = 1;
+
+    function createDiv() {
+        var inp = document.getElementById("content");
+        var art = document.getElementById("article");
+        var newInp = inp.cloneNode(true);
+
+        newInp.id = newInp.id + id;
+        newInp.name = 'constructorDTOList[' + `${id}` + '].info';
+
+        id++;
+        art.appendChild(newInp);
+        var br = document.createElement("br");
+        art.appendChild(br);
+    }
+
+    function sendForm() {
+
+        length = document.getElementsByClassName('hd').length;
+
+        var ar = [];
+        for (let i = 0; i < length; i++) {
+            let doc = document.getElementsByClassName('hd')[i];
+            let obj = new Object();
+            obj.info = doc.value;
+            obj.clazz = "someClazz";
+            ar.push(obj);
+        }
+        console.log(ar);
+
+        const formData = JSON.stringify(ar);
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', "http://localhost:8080/article/create");
+        xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.send(formData);
+    }
+
+    elForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        sendForm();
+    });
+
+
+</script>
+</body>
+</html>
