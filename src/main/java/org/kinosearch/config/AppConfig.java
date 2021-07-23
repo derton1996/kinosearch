@@ -60,4 +60,10 @@ public class AppConfig implements WebMvcConfigurer {
         registry.viewResolver(resolver);
     }
 
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/css/**")
+                .addResourceLocations("/WEB-INF/css/");
+    }
+
 }

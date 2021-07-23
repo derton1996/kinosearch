@@ -1,39 +1,49 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
 <body>
 <form id="form">
     <div id="article">
-        <input id="content" class="hd" type="text"/>
-        <button type="button" onclick="createDiv()">+</button>
+        <textarea id="h1-content" class="h1"></textarea>
+        <input type="text" disabled value="Заголовок">
+        <button type="button" onclick="createDiv('h1-content')">+</button>
+        <br>
+
+        <textarea id="h2-content" class="h2"></textarea>
+        <input type="text" disabled value="Подзаголовок">
+        <button type="button" onclick="createDiv('h2-content')">+</button>
+        <br>
+
+        <textarea id="text-content" class="text-cont"></textarea>
+        <input type="text" disabled value="Текст">
+        <button type="button" onclick="createDiv('text-content')">+</button>
         <br>
     </div>
     <br>
     <div>
         <button type="submit">Добавить</button>
     </div>
+    <div id="tmp"></div>
 </form>
 <script>
     const elForm = document.getElementById('form');
 
     let id = 1;
 
-    function createDiv() {
-        var inp = document.getElementById("content");
-        var art = document.getElementById("article");
+    function createDiv(elId) {
+        var inp = document.getElementById(elId);
+        var art = document.getElementById("tmp");
         var newInp = inp.cloneNode(true);
         inp.value = null;
 
-        newInp.id = newInp.id + id;
-        newInp.name = 'constructorDTOList[' + `${id}` + '].info';
-
-        id++;
+        newInp.id = newInp.id + id++;
         art.appendChild(newInp);
         var br = document.createElement("br");
         art.appendChild(br);
@@ -41,17 +51,21 @@
 
     function sendForm() {
 
-        length = document.getElementsByClassName('hd').length;
+        length = document.getElementById("tmp").children.length;
 
         var ar = [];
-        for (let i = 1; i < length; i++) {
-            let doc = document.getElementsByClassName('hd')[i];
+        for (let i = 0; i < length; i++) {
+            let doc = document.getElementById("tmp").children[i];
+
+            //пропускаем <br>
+            if (doc.type === undefined) {
+                continue;
+            }
             let obj = new Object();
             obj.info = doc.value;
-            obj.clazz = "someClazz";
+            obj.clazz = doc.className;
             ar.push(obj);
         }
-        console.log(ar);
 
         const formData = JSON.stringify(ar);
         const xhr = new XMLHttpRequest();
