@@ -32,7 +32,32 @@
     </div>
     <div id="tmp"></div>
 </form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
+    function autoResize(id, className) {
+        $(function () {
+            var textArea = $(id),
+                hiddenDiv = $(document.createElement('div')),
+                content = null;
+            hiddenDiv.addClass(className);
+            hiddenDiv.hide();
+            hiddenDiv.id = "hidDiv-" + id;
+
+            $(textArea).after(hiddenDiv);
+            textArea.on('keyup', function () {
+                content = $(this).val();
+                content = content.replace(/\n/g, '<br>');
+                hiddenDiv.html(content);
+                $(this).css('height', hiddenDiv.height());
+            });
+        });
+    }
+
+    for (let i = 0; i < document.getElementsByTagName('textarea').length; i++) {
+        let el = document.getElementsByTagName('textarea')[i];
+        autoResize('#' + el.id, el.className);
+    }
+
     const elForm = document.getElementById('form');
 
     let id = 1;
@@ -47,6 +72,9 @@
         art.appendChild(newInp);
         var br = document.createElement("br");
         art.appendChild(br);
+        let lastElIndex = document.getElementsByTagName('textarea').length - 1;
+        let lastEl = document.getElementsByTagName('textarea')[lastElIndex];
+        autoResize('#' + lastEl.id, newInp.className);
     }
 
     function sendForm() {
