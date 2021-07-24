@@ -4,14 +4,14 @@ package org.kinosearch.dto;
 import javax.persistence.*;
 import java.util.List;
 @Entity
-@Table(name="articledesign")
+@Table(name="article_design")
 public class ArticleDesignDTO {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "id")
     private Integer id;
 
-    @Column(name = "blocks")
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<BlockDTO> blocks;
 
     public ArticleDesignDTO() {
@@ -26,6 +26,7 @@ public class ArticleDesignDTO {
     }
 
     public void setBlocks(List<BlockDTO> blocks) {
+        blocks.forEach(blockDTO -> blockDTO.setArticleDesignDTO(this));
         this.blocks = blocks;
     }
 }

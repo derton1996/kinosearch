@@ -16,6 +16,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
+          <factory-entry name="entityManagerFactory" value="287305c7-f914-47e3-9baf-c1f417e87f73" />
           <factory-entry name="kinosearch" value="287305c7-f914-47e3-9baf-c1f417e87f73" />
         </datasource-mapping>
         <naming-strategy-map />
@@ -32,14 +33,12 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:5.3.0" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.0" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.3.0" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.3.0" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-core:5.3.0" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-jcl:5.3.0" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.0" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-web:5.3.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:5.3.8" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.8" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.3.8" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.3.8" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.8" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-web:5.3.8" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web:2.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:2.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.4.5" level="project" />
@@ -67,6 +66,8 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.3.9" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjrt:1.9.6" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.26" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-core:5.3.8" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-jcl:5.3.8" level="project" />
     <orderEntry type="library" name="Maven: org.thymeleaf:thymeleaf-spring5:3.0.11.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.thymeleaf:thymeleaf:3.0.11.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.attoparser:attoparser:2.0.5.RELEASE" level="project" />
@@ -101,5 +102,7 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.13.0-rc1" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.13.0-rc1" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.5" level="project" />
+    <orderEntry type="library" name="Maven: javax.xml.bind:jaxb-api:2.3.1" level="project" />
+    <orderEntry type="library" name="Maven: javax.activation:javax.activation-api:1.2.0" level="project" />
   </component>
 </module>
