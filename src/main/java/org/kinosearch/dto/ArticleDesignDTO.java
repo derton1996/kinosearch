@@ -1,23 +1,31 @@
 package org.kinosearch.dto;
 
+
+import javax.persistence.*;
 import java.util.List;
-
+@Entity
+@Table(name="articledesign")
 public class ArticleDesignDTO {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Integer id;
 
-    List<ArticleDesignDTO> blocks;
+    @Column(name = "blocks")
+    @OneToMany
+    private List<BlockDTO> blocks;
 
     public ArticleDesignDTO() {
     }
 
-    public ArticleDesignDTO(List<ArticleDesignDTO> blocks) {
+    public ArticleDesignDTO(List<BlockDTO> blocks) {
         this.blocks = blocks;
     }
 
-    public List<ArticleDesignDTO> getBlocks() {
+    public List<BlockDTO> getBlocks() {
         return blocks;
     }
 
-    public void setBlocks(List<ArticleDesignDTO> blocks) {
+    public void setBlocks(List<BlockDTO> blocks) {
         this.blocks = blocks;
     }
 }

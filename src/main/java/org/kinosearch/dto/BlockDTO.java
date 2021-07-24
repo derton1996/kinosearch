@@ -1,8 +1,18 @@
 package org.kinosearch.dto;
 
-public class BlockDTO {
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="block")
+public class BlockDTO {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Integer id;
+    @Column(name = "clazz")
     private String clazz;
+    @Column(name = "content")
     private String content;
 
     public BlockDTO() {
