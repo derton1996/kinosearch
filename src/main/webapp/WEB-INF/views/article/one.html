@@ -10,103 +10,39 @@
 </head>
 <body>
 <form id="form">
+    <div>
+        <button type="submit">Сформировать статью</button>
+    </div>
     <div id="article">
-        <textarea id="h1-content" class="h1"></textarea>
-        <input type="text" disabled value="Заголовок">
-        <button type="button" onclick="createDiv('h1-content')">+</button>
-        <br>
-
-        <textarea id="h2-content" class="h2"></textarea>
-        <input type="text" disabled value="Подзаголовок">
-        <button type="button" onclick="createDiv('h2-content')">+</button>
-        <br>
-
         <textarea id="text-content" class="text-cont"></textarea>
-        <input type="text" disabled value="Текст">
-        <button type="button" onclick="createDiv('text-content')">+</button>
-        <br>
+    </div>
+    <div>
+        <button id="add-text-button" type="button" class="round-button" onclick="createDiv('text-content')"><img src="img/text-icon.png" height="100%" width="110%"></button>
+        <button id="add-img-button" type="button" class="round-button"><img src="img/img-icon.png" height="100%" width="110%"></button>
     </div>
     <br>
-    <div>
-        <button type="submit">Добавить</button>
-    </div>
-    <div id="tmp"></div>
 </form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="js/autoResize.js"></script>
+<script src="js/sendForm.js"></script>
 <script>
-    function autoResize(id, className) {
-        $(function () {
-            var textArea = $(id),
-                hiddenDiv = $(document.createElement('div')),
-                content = null;
-            hiddenDiv.addClass(className);
-            hiddenDiv.hide();
-            hiddenDiv.id = "hidDiv-" + id;
+    let el = document.getElementsByTagName('textarea')[0];
+    autoResize('#' + el.id, el.className);
 
-            $(textArea).after(hiddenDiv);
-            textArea.on('keyup', function () {
-                content = $(this).val();
-                content = content.replace(/\n/g, '<br>');
-                hiddenDiv.html(content);
-                $(this).css('height', hiddenDiv.height());
-            });
-        });
+    const defaultClassName = el.className;
+    const br = document.createElement("br");
+    let i = 1;
+
+    function createDiv(elementId) {
+        var articleDiv = document.getElementById("article");
+        var newBlock = document.createElement('textarea');
+        newBlock.classList.add(defaultClassName);
+        newBlock.id = elementId + i++;
+
+        articleDiv.appendChild(newBlock);
+        articleDiv.appendChild(br);
+        autoResize('#' + newBlock.id, newBlock.className);
     }
-
-    for (let i = 0; i < document.getElementsByTagName('textarea').length; i++) {
-        let el = document.getElementsByTagName('textarea')[i];
-        autoResize('#' + el.id, el.className);
-    }
-
-    const elForm = document.getElementById('form');
-
-    let id = 1;
-
-    function createDiv(elId) {
-        var inp = document.getElementById(elId);
-        var art = document.getElementById("tmp");
-        var newInp = inp.cloneNode(true);
-        inp.value = null;
-
-        newInp.id = newInp.id + id++;
-        art.appendChild(newInp);
-        var br = document.createElement("br");
-        art.appendChild(br);
-        let lastElIndex = document.getElementsByTagName('textarea').length - 1;
-        let lastEl = document.getElementsByTagName('textarea')[lastElIndex];
-        autoResize('#' + lastEl.id, newInp.className);
-    }
-
-    function sendForm() {
-
-        length = document.getElementById("tmp").children.length;
-
-        var ar = [];
-        for (let i = 0; i < length; i++) {
-            let doc = document.getElementById("tmp").children[i];
-
-            //пропускаем <br>
-            if (doc.type === undefined) {
-                continue;
-            }
-            let obj = new Object();
-            obj.info = doc.value;
-            obj.clazz = doc.className;
-            ar.push(obj);
-        }
-
-        const formData = JSON.stringify(ar);
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', "http://localhost:8080/article/create");
-        xhr.setRequestHeader('Content-Type', 'application/json')
-        xhr.send(formData);
-    }
-
-    elForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        sendForm();
-    });
-
 
 </script>
 </body>
