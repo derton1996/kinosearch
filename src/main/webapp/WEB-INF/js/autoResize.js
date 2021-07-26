@@ -1,3 +1,9 @@
+/**
+ * Автоматическое изменение высоты текстового блока под содержимое
+ *
+ * @param id            идентификатор блока
+ * @param className     класс блока
+ */
 function autoResize(id, className) {
     $(function () {
         var textArea = $(id),
