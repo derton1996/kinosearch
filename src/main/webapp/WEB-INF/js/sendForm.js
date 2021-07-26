@@ -1,10 +1,16 @@
 const elForm = document.getElementById('form');
 
+/**
+ * Перехвать отправки формы и подсовывание её в запрос в {@link sendForm}
+ */
 elForm.addEventListener('submit', function (e) {
     e.preventDefault();
     sendForm();
 });
 
+/**
+ * Отправка на бэк формы статьи
+ */
 function sendForm() {
     length = document.getElementById("article").children.length;
 

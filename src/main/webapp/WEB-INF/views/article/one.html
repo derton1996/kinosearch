@@ -15,6 +15,7 @@
     </div>
     <div id="article">
         <textarea id="text-content" class="text-cont"></textarea>
+        <br>
     </div>
     <div>
         <button id="add-text-button" type="button" class="round-button" onclick="createDiv('text-content')"><img src="img/text-icon.png" height="100%" width="110%"></button>
@@ -30,14 +31,18 @@
     autoResize('#' + el.id, el.className);
 
     const defaultClassName = el.className;
-    const br = document.createElement("br");
     let i = 1;
 
-    function createDiv(elementId) {
+    /**
+     * Создание нового элемента по прожатию кнопки
+     * @param textType     тип текста
+     */
+    function createDiv(textType) {
         var articleDiv = document.getElementById("article");
         var newBlock = document.createElement('textarea');
         newBlock.classList.add(defaultClassName);
-        newBlock.id = elementId + i++;
+        newBlock.id = textType + i++;
+        const br = document.createElement("br");
 
         articleDiv.appendChild(newBlock);
         articleDiv.appendChild(br);
