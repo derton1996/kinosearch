@@ -1,28 +1,45 @@
 .h1 {
     width: 600px; /* Ширина поля */
-    height: 100px; /* Высота */
+    min-height: 32px;
     font-weight: bold;
     color: #000000;
     font-size: 32px;
     font-family: Arial, sans-serif;
     resize: none;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    overflow: hidden;
 }
 
 .h2 {
     width: 600px; /* Ширина поля */
-    height: 100px; /* Высота */
+    min-height: 24px;
     font-weight: bold;
     color: #000000;
     font-size: 24px;
     font-family: Arial, sans-serif;
     resize: none;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    overflow: hidden;
 }
 
 .text-cont {
     width: 600px; /* Ширина поля */
-    height: 100px; /* Высота */
+    min-height: 18px;
     color: #000000;
     font-size: 18px;
     font-family: "Times New Roman", sans-serif;
     resize: none;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    overflow: hidden;
+}
+
+.round-button {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: none;
+    margin-left: 50px;
 }
