@@ -16,7 +16,7 @@ function sendForm() {
             continue;
         }
         let obj = new Object();
-        obj.info = doc.value;
+        obj.content = doc.value;
         obj.clazz = doc.className;
         ar.push(obj);
     }
