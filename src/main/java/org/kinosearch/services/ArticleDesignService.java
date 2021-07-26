@@ -25,10 +25,6 @@ public class ArticleDesignService{
     public void save(List<BlockDTO> blockDTOS){
         ArticleDesignDTO articleDesignDTO = new ArticleDesignDTO();
         articleDesignDTO.setBlocks(blockDTOS);
-
-        //blockDTOS.forEach(blockDTO -> blockDTO.setArticleDesignDTO(articleDesignDTO));
         articleDesignRepository.save(articleDesignDTO);
-        //blockRepository.saveAll(blockDTOS);
-
     }
 }
