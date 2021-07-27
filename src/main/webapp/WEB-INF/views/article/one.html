@@ -14,11 +14,15 @@
         <button type="submit">Сформировать статью</button>
     </div>
     <div id="article">
-        <textarea id="text-content" class="text-cont"></textarea>
-        <br>
+        <div id="someDivId">
+            <button id="leftButton" class="left-sub-menu-button" type="button"><img src="img/left-sub-menu.png" height="100%" width="100%"></button>
+            <textarea id="text-content" class="text-cont"></textarea>
+            <br>
+        </div>
     </div>
-    <div>
-        <button id="add-text-button" type="button" class="round-button" onclick="createDiv('text-content')"><img src="img/text-icon.png" height="100%" width="110%"></button>
+    <div class="bottom-menu">
+        <button id="add-text-button" type="button" class="round-button" onclick="createDiv('text-content')"><img
+                src="img/text-icon.png" height="100%" width="110%"></button>
         <button id="add-img-button" type="button" class="round-button"><img src="img/img-icon.png" height="100%" width="110%"></button>
     </div>
     <br>
@@ -27,10 +31,16 @@
 <script src="js/autoResize.js"></script>
 <script src="js/sendForm.js"></script>
 <script>
+
+    $(".left-sub-menu-button").each(function () {
+        $(this).click(function() {
+            console.log($(this).parent().attr('id'));
+        })
+    });
+
     let el = document.getElementsByTagName('textarea')[0];
     autoResize('#' + el.id, el.className);
-
-    const defaultClassName = el.className;
+    var br = document.createElement("br");
     let i = 1;
 
     /**
@@ -39,14 +49,27 @@
      */
     function createDiv(textType) {
         var articleDiv = document.getElementById("article");
-        var newBlock = document.createElement('textarea');
-        newBlock.classList.add(defaultClassName);
-        newBlock.id = textType + i++;
-        const br = document.createElement("br");
+        var newDiv = document.createElement('div')
+        newDiv.id = "someDivId" + i;
 
-        articleDiv.appendChild(newBlock);
-        articleDiv.appendChild(br);
-        autoResize('#' + newBlock.id, newBlock.className);
+        var newButton = document.createElement('button');
+        newButton.id = "leftButton" + i;
+        newButton.className = "left-sub-menu-button";
+        newButton.innerHTML = '<img src="img/left-sub-menu.png" height="100%" width="100%">';
+
+        var textBlock = document.createElement('textarea');
+        textBlock.id = "text-content" + i;
+        textBlock.className = "text-cont";
+
+        newDiv.appendChild(newButton);
+        newDiv.appendChild(textBlock)
+        newDiv.appendChild(br);
+        articleDiv.appendChild(newDiv);
+        autoResize('#' + textBlock.id, textBlock.className);
+        i++;
+        $(newButton).click(function() {
+            console.log($(this).parent().attr('id'));
+        })
     }
 
 </script>

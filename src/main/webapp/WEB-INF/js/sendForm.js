@@ -17,14 +17,17 @@ function sendForm() {
     var ar = [];
     for (let i = 0; i < length; i++) {
         let doc = document.getElementById("article").children[i];
-        //пропускаем <br>
-        if (doc.type === undefined) {
-            continue;
+        for (let j = 0; j < doc.length; j++) {
+            let area = doc[j];
+            //пропускаем <br>
+            if (area.type === undefined) {
+                continue;
+            }
+            let obj = new Object();
+            obj.content = area.value;
+            obj.clazz = area.className;
+            ar.push(obj);
         }
-        let obj = new Object();
-        obj.content = doc.value;
-        obj.clazz = doc.className;
-        ar.push(obj);
     }
 
     const formData = JSON.stringify(ar);
